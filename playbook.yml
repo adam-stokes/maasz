@@ -12,8 +12,8 @@
     - name: Add cloud src repo
       apt_repository: repo='deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main' state=present
     - name: Install maas packages
-      shell: apt-get install -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' -f -q -y maas maas-dns maas-dhcp
+      shell: DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' -f -q -y maas maas-dns maas-dhcp </dev/null
     - name: Add maas superuser
-      shell: echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', admin@example.com', 'pass')" | sudo maas shell
+      shell: echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'pass')" | sudo maas shell
     - name: Welcome
-      shell: echo Visit http://`ifconfig eth0 | sed -n 2p | cut -d ":" -f2 | cut -d " " -f1`/MAAS for your web interface. l: admin p: pass
+      shell: echo Visit http://`ifconfig eth0 | sed -n 2p | cut -d ":" -f2 | cut -d " " -f1`/MAAS for your web interface.
