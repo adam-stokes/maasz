@@ -17,7 +17,9 @@ Needs [ansible][1] installed
 % vagrant up --provider=lxc --provision-with ansible
 ```
 
-# Running
+# Provisioning
+
+The previous installer step should've run ansible after image was loaded. If not just run the below command
 
 ```
 % vagrant provision
@@ -25,7 +27,7 @@ Needs [ansible][1] installed
 
 # Accessing
 
-Whatever your IP is assigned to the vagrant image `vagrant ssh && ifconfig` is what you'll use to access the MAAS web ui
+Whatever your IP is assigned to the vagrant image `vagrant ssh && ip addr show eth0 scope global` "inet" is the ip you'll use to access the MAAS web ui
 
 `http://vagrant.ip/MAAS`
 
