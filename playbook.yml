@@ -1,0 +1,22 @@
+---
+- hosts: all
+  user: vagrant
+  sudo: True
+  verbose: True
+  tasks:
+    - name: Install en langpack
+      apt: pkg=language-pack-en-base
+    - name: Add ubuntu-cloud keyring
+      apt: pkg=ubuntu-cloud-keyring update_cache=yes
+    - name: Add cloud repo
+      apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main' state=present
+    - name: Add cloud src repo
+      apt_repository: repo='deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main' state=present
+    - name: Install maas
+      apt: pkg=maas
+    - name: Install maas-dns
+      apt: pkg=maas-dns
+    - name: Install maas-dhcp
+      apt: pkg=maas-dhcp
+    - name: Add maas superuser
+      shell: echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', admin@example.com', 'pass')" | sudo maas shell
