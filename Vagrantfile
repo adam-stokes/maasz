@@ -9,5 +9,5 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "playbook.yml"
     ansible.verbose = false
   end
-  config.vm.hostname = "vagrant-maas-lxc-salt"
+  config.vm.hostname = "maas-lxc-master"
 end

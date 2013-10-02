@@ -1,11 +1,17 @@
 vagrant-maas
 ============
 
-Quickly get up and running with [MAAS][2]
+Quickly get up and running with [MAAS][2]. Maybe you are a developer wanting to test latest MAAS bits or you are presenting MAAS to a potential client? This should get you to the point where you just import boot images and attach nodes.
+
+In the pipeline:
+- Checkout personal bazaar repos and build MAAS from source to see your latest code changes.
+- Quickly build MAAS from source and run unittests within a container.
+- Add nodes from kvm, virtualbox, and other virtualization images.
 
 # Pre-reqs
 
-Needs [ansible][1] installed
+* Needs [ansible][1] installed
+* Use the default vagrant box show in the install instructions or [build your own lxc enabled vagrant box][3].
 
 # Install
 
@@ -35,3 +41,4 @@ Default login and password: `admin` `pass`
 
  [1]: http://ansibleworks.com/docs/gettingstarted.html#ubuntu-and-debian
  [2]: http://maas.ubuntu.com
+ [3]: https://github.com/fgrehm/vagrant-lxc/blob/master/BOXES.md
