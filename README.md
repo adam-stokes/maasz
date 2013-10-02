@@ -13,7 +13,7 @@ Needs [ansible][1] installed
 % git clone git://github.com:battlemidget/vagrant-maas.git
 % cd vagrant-maas
 % vagrant plugin install vagrant-lxc
-% vagrant box add precise64 ..needs location..
+% vagrant box add precise64 http://bit.ly/vagrant-lxc-precise64-2013-09-28
 % vagrant up --provider=lxc
 ```
 
