@@ -2,7 +2,6 @@
 - hosts: all
   user: vagrant
   sudo: True
-  verbose: True
   tasks:
     - name: Install en langpack
       apt: pkg=language-pack-en-base
@@ -12,11 +11,9 @@
       apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main' state=present
     - name: Add cloud src repo
       apt_repository: repo='deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main' state=present
-    - name: Install maas
-      apt: pkg=maas
-    - name: Install maas-dns
-      apt: pkg=maas-dns
-    - name: Install maas-dhcp
-      apt: pkg=maas-dhcp
+    - name: Install maas packages
+      shell: apt-get install -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' -f -q -y maas maas-dns maas-dhcp
     - name: Add maas superuser
       shell: echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', admin@example.com', 'pass')" | sudo maas shell
+    - name: Welcome
+      shell: echo Visit http://`ifconfig eth0 | sed -n 2p | cut -d ":" -f2 | cut -d " " -f1`/MAAS for your web interface. l: admin p: pass
