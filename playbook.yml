@@ -3,19 +3,14 @@
   user: vagrant
   sudo: True
   tasks:
-    - name: Install en langpack
-      apt: pkg=language-pack-en-base
-    - name: Add ubuntu-cloud keyring
-      apt: pkg=ubuntu-cloud-keyring update_cache=yes
-    - name: Add cloud repo
-      apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main' state=present update_cache=yes
-    - name: Add cloud src repo
-      apt_repository: repo='deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main' state=present
-    - name: Update system
-      apt: upgrade=dist update_cache=yes
+    - name: Install base packages and other usefulness
+      action: apt pkg=$item state=installed update_cache=yes
+      with_items:
+        - language-pack-en-base
     - name: Install maas packages
       shell: DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' -f -q -y maas maas-dns maas-dhcp </dev/null
     - name: Add maas superuser
       shell: echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'pass')" | sudo maas shell
-    - name: Welcome
-      shell: echo Visit http://`ifconfig eth0 | sed -n 2p | cut -d ":" -f2 | cut -d " " -f1`/MAAS for your web interface.
+    - name: Add boot images
+      shell: sudo maas-import-pxe-files
+
