@@ -42,3 +42,7 @@ Default login and password: `admin` `pass`
  [1]: http://ansibleworks.com/docs/gettingstarted.html#ubuntu-and-debian
  [2]: http://maas.ubuntu.com
  [3]: https://github.com/fgrehm/vagrant-lxc/blob/master/BOXES.md
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/battlemidget/vagrant-maas/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
