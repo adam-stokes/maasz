@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
     lxc.customize 'cgroup.devices.allow', 'c 10:237 rwm'
     lxc.customize "aa_profile", "lxc-container-default-with-loops"
   end
-  config.vm.provider :virtualbox do |vbox|
+  config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
   config.vm.provision :ansible do |ansible|
