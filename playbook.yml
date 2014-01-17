@@ -4,7 +4,7 @@
   sudo: True
   tasks:
     - name: Install base packages and other usefulness
-      action: apt pkg=$item state=installed update_cache=yes
+      action: apt pkg={{ item }} state=installed update_cache=yes
       with_items:
         - language-pack-en-base
     - name: Install maas packages
