@@ -1,16 +1,14 @@
----
-- hosts: all
+- name: vagrant-maas
+  hosts: vagrant
   user: vagrant
+  gather_facts: False
   sudo: True
   tasks:
     - name: Install base packages and other usefulness
       action: apt pkg={{ item }} state=installed update_cache=yes
       with_items:
         - language-pack-en-base
-    - name: Install maas packages
-      shell: DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' -f -q -y maas maas-dns maas-dhcp </dev/null
-    - name: Add maas superuser
-      shell: echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'pass')" | sudo maas shell
-    - name: Add boot images
-      shell: sudo maas-import-pxe-files
-
+    - name: Install cloud packages
+      shell: dpkg -i /vagrant/cloud-install-common*deb /vagrant/cloud-install-multi*deb
+    - name: Install dependencies
+      shell: apt-get install -f -yy

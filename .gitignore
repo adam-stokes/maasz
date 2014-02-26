@@ -20,3 +20,6 @@ doc/
 # Ansible
 .vagrant*
 vagrant_ansible_inventory_default
+
+# Misc
+files/
