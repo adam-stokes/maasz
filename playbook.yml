@@ -1,5 +1,4 @@
-- name: vagrant-maas
-  hosts: vagrant
+- hosts: all
   user: vagrant
   gather_facts: False
   sudo: True
@@ -8,7 +7,3 @@
       action: apt pkg={{ item }} state=installed update_cache=yes
       with_items:
         - language-pack-en-base
-    - name: Install cloud packages
-      shell: dpkg -i /vagrant/cloud-install-common*deb /vagrant/cloud-install-multi*deb
-    - name: Install dependencies
-      shell: apt-get install -f -yy
