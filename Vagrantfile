@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   # MaaS Server
   config.vm.define "maas", primary: true do |maas|
     config.vm.hostname = "maas"
-    config.vm.network :private_network, ip: "192.168.150.1"
+    config.vm.network :private_network, ip: "192.168.150.10"
   end
 
   # nodes
